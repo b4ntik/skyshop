@@ -1,6 +1,6 @@
 package model.product;
 
-import org.skypro.skyshop.text.Article;
+import model.article.Article;
 
 public class SimpleProduct extends Product {
     private int productPrice;
@@ -37,6 +37,7 @@ public class SimpleProduct extends Product {
         }
 
     }
+
 
     @Override
     public boolean equals(Article article) {
