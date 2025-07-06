@@ -15,6 +15,7 @@ public abstract class Product implements Searchable {
             throw new IllegalArgumentException("Не указано наименование продукта");
         } else {
             this.productName = productName;
+            this.id = UUID.randomUUID();
         }
 
     }
@@ -43,8 +44,7 @@ public abstract class Product implements Searchable {
     }
 
     public UUID getId() {
-        id = UUID.randomUUID();
-        return id;
+         return id;
     }
 
     //форматирование строки

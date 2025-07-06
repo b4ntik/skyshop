@@ -18,7 +18,7 @@ public class Article implements Searchable {
         } else {
             this.articleTitle = articleTitle;
             this.articleBody = articleBody;
-            this.id = id;
+            this.id = UUID.randomUUID();
         }
     }
 
@@ -52,7 +52,7 @@ public class Article implements Searchable {
     }
 
     public UUID getId() {
-        return UUID.randomUUID();
+         return id;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package org.skypro.skyshop.model.service;
+package org.skypro.skyshop.service;
 
 import org.skypro.skyshop.model.article.Article;
 import org.skypro.skyshop.model.product.Product;
@@ -30,6 +30,9 @@ public class StorageService {
 
     public Collection<Article> getArticleMap() {
         return articleMap.values();
+    }
+    public UUID getProductUid(){
+        return getID().
     }
 
     //объединение мапов articleMap и productMap в одну коллекцию Searchable объектов
