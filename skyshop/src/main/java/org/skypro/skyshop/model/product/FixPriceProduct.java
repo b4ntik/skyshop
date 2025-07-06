@@ -1,19 +1,21 @@
-package model.product;
+package org.skypro.skyshop.model.product;
 
-//import org.skypro.skyshop.text.Article;
+import org.skypro.skyshop.model.article.Article;
 
-import model.article.Article;
+import java.util.UUID;
 
 public class FixPriceProduct extends Product {
     private static final int FIX_PRICE = 150;
+    private final UUID id;
 
-    public FixPriceProduct(String productName) throws IllegalArgumentException {
+    public FixPriceProduct(String productName, UUID id) throws IllegalArgumentException {
         super(productName);
 
         if (productName.isBlank()) {
             throw new IllegalArgumentException("Не указано наименование продукта");
         } else {
             this.productName = productName;
+            this.id = id;
         }
     }
 

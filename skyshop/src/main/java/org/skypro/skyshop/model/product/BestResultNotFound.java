@@ -1,4 +1,4 @@
-package model.product;
+package org.skypro.skyshop.model.product;
 
 public class BestResultNotFound extends Exception {
 

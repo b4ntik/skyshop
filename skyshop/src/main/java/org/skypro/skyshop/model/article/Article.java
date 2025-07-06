@@ -1,7 +1,8 @@
-package model.article;
+package org.skypro.skyshop.model.article;
 
-import model.product.Product;
-import model.search.Searchable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.skypro.skyshop.model.product.Product;
+import org.skypro.skyshop.model.search.Searchable;
 
 import java.lang.Exception;
 import java.util.UUID;
@@ -9,16 +10,18 @@ import java.util.UUID;
 public class Article implements Searchable {
     private String articleTitle;
     private String articleBody;
+    private final UUID id;
 
-    public Article(String articleTitle, String articleBody) throws Exception {
+    public Article(String articleTitle, String articleBody, UUID id) throws Exception {
         if (articleTitle.isBlank() || articleBody.isBlank()) {
             throw new Exception("Название статьи или сама статья пустые");
         } else {
             this.articleTitle = articleTitle;
             this.articleBody = articleBody;
+            this.id = id;
         }
     }
-
+    @JsonIgnore
     @Override
     public String getProductType() {
         return "ARTICLE";
@@ -28,32 +31,27 @@ public class Article implements Searchable {
         return articleTitle + "\n" + articleBody;
     }
 
-    @Override
-    public UUID getId() {
-        return null;
-    }
-
     public String searchTerm() {
-        String result = getArticleTitle() + "\n" + getArticleBody();
+        String result = getProductName() + "\n" + getArticleBody();
         return result;
     }
-
+@JsonIgnore
     public String getStringRepresentation() {
 
-        return getArticleTitle() + " - " + getProductType();
+        return getProductName() +  " - " + getProductType();
     }
 
-    public String getArticleTitle() {
-        return articleTitle;
-    }
+    //public String getArticleTitle() {
+      //  return articleTitle;
+  //  }
 
     public String getArticleBody() {
         return articleBody;
     }
 
-    public String getProductName() {
-        return articleTitle;
-    }
+    public String getProductName() { return articleTitle; }
+
+    public UUID getId() { return UUID.randomUUID(); }
 
     @Override
     public boolean equals(Product product) {

@@ -1,18 +1,21 @@
-package model.product;
+package org.skypro.skyshop.model.product;
 
-import model.article.Article;
+import org.skypro.skyshop.model.article.Article;
+import java.util.UUID;
 
 public class SimpleProduct extends Product {
     private int productPrice;
+    private final UUID id;
 
 
-    public SimpleProduct(String productName, int productPrice) throws IllegalArgumentException {
+    public SimpleProduct(String productName, int productPrice, UUID id) throws IllegalArgumentException {
         super(productName);
         if (productPrice <= 0) {
             throw new IllegalArgumentException("Цена меньше нуля");
         } else {
 
             this.productPrice = productPrice;
+            this.id = id;
         }
     }
 

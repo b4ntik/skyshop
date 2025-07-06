@@ -1,15 +1,16 @@
-package model.product;
+package org.skypro.skyshop.model.product;
 
-//import org.skypro.skyshop.text.Article;
+import org.skypro.skyshop.model.article.Article;
 
-import model.article.Article;
+import java.util.UUID;
 
 public class DiscountedProduct extends Product {
 
     private int basePrice;
     private int discount;
+    private final UUID id;
 
-    public DiscountedProduct(String productName, int basePrice, int discount) throws IllegalArgumentException {
+    public DiscountedProduct(String productName, int basePrice, int discount, UUID id) throws IllegalArgumentException {
         super(productName);
         if (discount < 0 || discount > 100) {
             throw new IllegalArgumentException("Некорректна указана скидка");
@@ -20,6 +21,7 @@ public class DiscountedProduct extends Product {
         } else {
             this.basePrice = basePrice;
             this.discount = discount;
+            this.id = id;
         }
     }
 

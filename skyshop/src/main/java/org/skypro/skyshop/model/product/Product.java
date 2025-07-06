@@ -1,8 +1,9 @@
-package model.product;
-import model.search.Searchable;
+package org.skypro.skyshop.model.product;
 
-import java.util.UUID;
+import org.skypro.skyshop.model.search.Searchable;
+
 import java.util.Objects;
+import java.util.UUID;
 
 public abstract class Product implements Searchable {
     private UUID id;
@@ -16,6 +17,10 @@ public abstract class Product implements Searchable {
         }
 
     }
+
+    public Product(UUID uuid, String s, double v) {
+    }
+
     public boolean isSpecial() {
         return false;
     }
@@ -25,7 +30,7 @@ public abstract class Product implements Searchable {
     public String getProductName() {
         return productName;
     }
-
+    //@JsonIgnore
     public String getProductType() {
         return "PRODUCT";
     }
@@ -43,6 +48,7 @@ public abstract class Product implements Searchable {
     public String toString() {
         return getProductName() + " : " + getProductPrice();
     }
+
 
     @Override
     public String searchTerm() {

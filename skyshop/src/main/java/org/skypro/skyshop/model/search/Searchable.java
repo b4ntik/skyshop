@@ -1,6 +1,6 @@
-package model.search;
-import model.product.Product;
-import model.article.Article;
+package org.skypro.skyshop.model.search;
+import org.skypro.skyshop.model.product.Product;
+import org.skypro.skyshop.model.article.Article;
 import java.util.UUID;
 
 public interface Searchable {
