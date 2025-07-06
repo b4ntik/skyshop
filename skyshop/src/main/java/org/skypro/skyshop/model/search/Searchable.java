@@ -17,9 +17,8 @@ public interface Searchable {
  default String getStringRepresentation() {
   return "";
  };
- default String getProductName(){
-  return "";
- }
+
+ default String getProductName(){  return ""; }
 
  //переопределение equals для продуктов
  boolean equals(Product product);

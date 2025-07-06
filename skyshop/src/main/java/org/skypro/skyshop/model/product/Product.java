@@ -1,5 +1,6 @@
 package org.skypro.skyshop.model.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.skypro.skyshop.model.search.Searchable;
 
 import java.util.Objects;
@@ -18,7 +19,7 @@ public abstract class Product implements Searchable {
 
     }
 
-    public Product(UUID uuid, String s, double v) {
+    public Product(String s, double v, UUID uuid) {
     }
 
     public boolean isSpecial() {
@@ -30,7 +31,8 @@ public abstract class Product implements Searchable {
     public String getProductName() {
         return productName;
     }
-    //@JsonIgnore
+
+    @JsonIgnore
     public String getProductType() {
         return "PRODUCT";
     }
@@ -39,10 +41,12 @@ public abstract class Product implements Searchable {
 
         return getProductName() + " - " + getProductType();
     }
-     public UUID getId(){
-         id = UUID.randomUUID();
+
+    public UUID getId() {
+        id = UUID.randomUUID();
         return id;
     }
+
     //форматирование строки
     @Override
     public String toString() {

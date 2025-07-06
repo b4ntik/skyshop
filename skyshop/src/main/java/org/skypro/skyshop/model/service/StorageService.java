@@ -27,24 +27,23 @@ public class StorageService {
     public Collection<Product> getProductMap() {
         return productMap.values();
     }
-    public Collection<Article> getArticleMap(){
+
+    public Collection<Article> getArticleMap() {
         return articleMap.values();
     }
+
     //объединение мапов articleMap и productMap в одну коллекцию Searchable объектов
-    public Collection<Searchable> getSearchable(){
+    public Collection<Searchable> getSearchable() {
 
         Collection<Searchable> searchable = Stream.concat(articleMap.values().stream(), productMap.values().stream())
                 .collect(Collectors.toList());
         return searchable;
     }
-    //метод для создания продуктов
+
+    //метод для создания тестовых продуктов
     private Map<UUID, Product> createTestProducts() {
         Map<UUID, Product> products = new HashMap<>();
         Product p1 = new SimpleProduct("Product 1", 100, UUID.randomUUID()) {
-            @Override
-            public boolean equals(Article article) {
-                return false;
-            }
 
             @Override
             public int getProductPrice() {
@@ -52,10 +51,6 @@ public class StorageService {
             }
         };
         Product p2 = new SimpleProduct("Product 2", 200, UUID.randomUUID()) {
-            @Override
-            public boolean equals(Article article) {
-                return false;
-            }
 
             @Override
             public int getProductPrice() {
@@ -70,8 +65,8 @@ public class StorageService {
     //метод для создания тестовых статей
     private Map<UUID, Article> createTestArticles() throws Exception {
         Map<UUID, Article> articles = new HashMap<>();
-        Article a1 = new Article( "Article", "Content of article 1", UUID.randomUUID());
-        Article a2 = new Article( "Article 2", "Content of article 2", UUID.randomUUID());
+        Article a1 = new Article("Article", "Content of article 1", UUID.randomUUID());
+        Article a2 = new Article("Article 2", "Content of article 2", UUID.randomUUID());
         articles.put(a1.getId(), a1);
         articles.put(a2.getId(), a2);
         return articles;

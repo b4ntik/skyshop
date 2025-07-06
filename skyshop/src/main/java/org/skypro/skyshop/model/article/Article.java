@@ -8,8 +8,8 @@ import java.lang.Exception;
 import java.util.UUID;
 
 public class Article implements Searchable {
-    private String articleTitle;
-    private String articleBody;
+    private final String articleTitle;
+    private final String articleBody;
     private final UUID id;
 
     public Article(String articleTitle, String articleBody, UUID id) throws Exception {
@@ -21,6 +21,7 @@ public class Article implements Searchable {
             this.id = id;
         }
     }
+
     @JsonIgnore
     @Override
     public String getProductType() {
@@ -35,23 +36,24 @@ public class Article implements Searchable {
         String result = getProductName() + "\n" + getArticleBody();
         return result;
     }
-@JsonIgnore
+
+    @JsonIgnore
     public String getStringRepresentation() {
 
-        return getProductName() +  " - " + getProductType();
+        return getProductName() + " - " + getProductType();
     }
-
-    //public String getArticleTitle() {
-      //  return articleTitle;
-  //  }
 
     public String getArticleBody() {
         return articleBody;
     }
 
-    public String getProductName() { return articleTitle; }
+    public String getProductName() {
+        return articleTitle;
+    }
 
-    public UUID getId() { return UUID.randomUUID(); }
+    public UUID getId() {
+        return UUID.randomUUID();
+    }
 
     @Override
     public boolean equals(Product product) {

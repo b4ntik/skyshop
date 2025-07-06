@@ -1,6 +1,7 @@
 package org.skypro.skyshop.model.product;
 
 import org.skypro.skyshop.model.article.Article;
+
 import java.util.UUID;
 
 public class SimpleProduct extends Product {
@@ -40,7 +41,6 @@ public class SimpleProduct extends Product {
         }
 
     }
-
 
     @Override
     public boolean equals(Article article) {

@@ -22,6 +22,7 @@ public class SearchResult {
     public static SearchResult fromSearchable(Searchable searchable) {
         return new SearchResult(searchable);
     }
+
     public String getId() {
         return id;
     }

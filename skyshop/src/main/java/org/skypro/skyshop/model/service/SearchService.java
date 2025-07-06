@@ -17,6 +17,7 @@ public class SearchService {
     public SearchService(StorageService storageService) {
         this.storageService = storageService;
     }
+
     public Collection<SearchResult> search(String searchString) {
         if (searchString == null || searchString.isEmpty()) {
             return Collections.emptyList();

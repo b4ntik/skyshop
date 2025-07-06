@@ -58,5 +58,5 @@ public class DiscountedProduct extends Product {
         return false;
     }
 
-  }
+}
 

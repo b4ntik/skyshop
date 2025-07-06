@@ -20,33 +20,36 @@ public class ShopController {
         this.storageService = storageService;
         this.searchResult = searchResult;
     }
+
     @GetMapping("/")
     public String home() {
         return "Welcome to Skyshop!";
     }
 
     @GetMapping("/products")
-    public Collection<Product> getAllProducts(){
+    public Collection<Product> getAllProducts() {
         return storageService.getProductMap();
     }
 
     @GetMapping("/articles")
-    public Collection<Article> getAllArticles(){
+    public Collection<Article> getAllArticles() {
 
         return storageService.getArticleMap();
     }
-   @GetMapping("/search")
-    public Collection<SearchResult> search(@RequestParam("pattern") String pattern) {
-       try {
-           if (pattern == null || pattern.isEmpty()) {
-               throw new IllegalArgumentException("Паттерн не передан");
-           }
 
-           return searchResult.search(pattern);
-       } catch (Exception e) {
-           e.printStackTrace();
-           throw e;
-       }
-   }
+    @GetMapping("/search")
+    public Collection<SearchResult> search(@RequestParam("pattern") String pattern) {
+        //на случай пустого паттерна добавил трай-кетч
+        try {
+            if (pattern == null || pattern.isEmpty()) {
+                throw new IllegalArgumentException("Паттерн не передан");
+            }
+
+            return searchResult.search(pattern);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
 
 }
