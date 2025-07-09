@@ -14,18 +14,19 @@ public class BasketService {
     public BasketService(StorageService storageService) {
         this.storageService = storageService;
     }
+
     private final Map<UUID, Integer> basket = new HashMap<>();
 
-    public void addProductByIdToBasket(UUID id){
+    public void addProductByIdToBasket(UUID id) {
 
         int newCount = basket.getOrDefault(id, 0) + 1;
         if (storageService.getSearchable().stream().anyMatch(product -> product.getId().equals(id))) {
             basket.put(id, newCount);
         } else
 
-    throw new IllegalArgumentException("id Не найден");
+            throw new IllegalArgumentException("id Не найден");
 
-        }
+    }
 
     public Map<UUID, UserBasket> getUserBasket() {
         Map<UUID, UserBasket> result = new HashMap<>();
@@ -33,7 +34,7 @@ public class BasketService {
         for (Map.Entry<UUID, Integer> entry : basket.entrySet()) {
             UUID productId = entry.getKey();
             int count = entry.getValue();
-                        // Получение продукта по id
+            // Получение продукта по id
             Product product = storageService.getProductMap().stream()
                     .filter(p -> p.getId().equals(productId))
                     .findFirst()

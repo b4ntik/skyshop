@@ -19,16 +19,16 @@ public class ProductBasket {
 
     //метод добавления в корзину - добавляем в лист
     public void addUserBasket(UUID id) {
-         productBasket.merge(id, 1, Integer::sum);
+        productBasket.merge(id, 1, Integer::sum);
 
     }
 
     //получение содержимого корзины
     public Map<UUID, Integer> getBasketComposition() {
-                return productBasket;
-            }
+        return productBasket;
+    }
 
-     //очистка корзины
+    //очистка корзины
     public void cleanBasket() {
         productBasket.clear();
     }

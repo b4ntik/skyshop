@@ -36,16 +36,16 @@ public class StorageService {
                 .collect(Collectors.toList());
         return searchable;
     }
+
     public Optional<Product> getProductById(UUID id) {
-        try{
-              return getProductMap().stream()
-                .filter(product -> product.getId().equals(id))
-                .findFirst();
+        try {
+            return getProductMap().stream()
+                    .filter(product -> product.getId().equals(id))
+                    .findFirst();
+        } catch (IllegalArgumentException exc) {
+            System.out.println("Такой товар отсутствует");
         }
-        catch (IllegalArgumentException exc){
-           System.out.println("Такой товар отсутствует");
-        }
-return null;
+        return null;
     }
 
     //метод для создания тестовых продуктов

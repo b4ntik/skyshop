@@ -11,20 +11,23 @@ public class UserBasket {
         this.items = items;
         this.count = count;
     }
+
     public int getCount() {
         return count;
     }
+
     public void setCount(int count) {
         this.count = count;
     }
 
-    public int totalBasketPrice(List<BasketItem> items){
-         total = items.stream()
+    public int totalBasketPrice(List<BasketItem> items) {
+        total = items.stream()
                 .mapToInt(item -> item.getProduct().getProductPrice() * item.getCount())
                 .sum();
-         return total;
+        return total;
     }
-    public List<BasketItem> getBasketItem(){
+
+    public List<BasketItem> getBasketItem() {
         return items;
     }
 }
