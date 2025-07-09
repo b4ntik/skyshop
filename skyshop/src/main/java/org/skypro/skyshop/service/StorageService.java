@@ -28,10 +28,6 @@ public class StorageService {
     public Collection<Article> getArticleMap() {
         return articleMap.values();
     }
-    //public Product getProductUid(UUID id){
-
-     //   return productMap.get(id);
-   // }
 
     //объединение мапов articleMap и productMap в одну коллекцию Searchable объектов
     public Collection<Searchable> getSearchable() {
