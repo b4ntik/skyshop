@@ -6,10 +6,7 @@ import org.skypro.skyshop.model.product.SimpleProduct;
 import org.skypro.skyshop.model.search.Searchable;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,9 +28,10 @@ public class StorageService {
     public Collection<Article> getArticleMap() {
         return articleMap.values();
     }
-    public UUID getProductUid(){
-        return getID().
-    }
+    //public Product getProductUid(UUID id){
+
+     //   return productMap.get(id);
+   // }
 
     //объединение мапов articleMap и productMap в одну коллекцию Searchable объектов
     public Collection<Searchable> getSearchable() {
@@ -41,6 +39,17 @@ public class StorageService {
         Collection<Searchable> searchable = Stream.concat(articleMap.values().stream(), productMap.values().stream())
                 .collect(Collectors.toList());
         return searchable;
+    }
+    public Optional<Product> getProductById(UUID id) {
+        try{
+              return getProductMap().stream()
+                .filter(product -> product.getId().equals(id))
+                .findFirst();
+        }
+        catch (IllegalArgumentException exc){
+           System.out.println("Такой товар отсутствует");
+        }
+return null;
     }
 
     //метод для создания тестовых продуктов
