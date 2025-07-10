@@ -45,7 +45,7 @@ public class StorageService {
         } catch (IllegalArgumentException exc) {
             System.out.println("Такой товар отсутствует");
         }
-        return null;
+        return Optional.empty();
     }
 
     //метод для создания тестовых продуктов
