@@ -15,11 +15,10 @@ public class Article implements Searchable {
     public Article(String articleTitle, String articleBody, UUID id) throws Exception {
         if (articleTitle.isBlank() || articleBody.isBlank()) {
             throw new Exception("Название статьи или сама статья пустые");
-        } else {
-            this.articleTitle = articleTitle;
-            this.articleBody = articleBody;
-            this.id = id;
         }
+        this.articleTitle = articleTitle;
+        this.articleBody = articleBody;
+        this.id = UUID.randomUUID();
     }
 
     @JsonIgnore
@@ -52,7 +51,7 @@ public class Article implements Searchable {
     }
 
     public UUID getId() {
-        return UUID.randomUUID();
+        return id;
     }
 
     @Override

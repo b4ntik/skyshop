@@ -1,4 +1,4 @@
-package org.skypro.skyshop.model.service;
+package org.skypro.skyshop.service;
 
 import org.skypro.skyshop.model.article.Article;
 import org.skypro.skyshop.model.product.Product;
@@ -6,10 +6,7 @@ import org.skypro.skyshop.model.product.SimpleProduct;
 import org.skypro.skyshop.model.search.Searchable;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -38,6 +35,17 @@ public class StorageService {
         Collection<Searchable> searchable = Stream.concat(articleMap.values().stream(), productMap.values().stream())
                 .collect(Collectors.toList());
         return searchable;
+    }
+
+    public Optional<Product> getProductById(UUID id) {
+        try {
+            return getProductMap().stream()
+                    .filter(product -> product.getId().equals(id))
+                    .findFirst();
+        } catch (IllegalArgumentException exc) {
+            System.out.println("Такой товар отсутствует");
+        }
+        return Optional.empty();
     }
 
     //метод для создания тестовых продуктов

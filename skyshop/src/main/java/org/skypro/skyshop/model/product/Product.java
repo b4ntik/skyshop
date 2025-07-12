@@ -13,9 +13,10 @@ public abstract class Product implements Searchable {
     public Product(String productName) throws IllegalArgumentException {
         if (productName.isBlank()) {
             throw new IllegalArgumentException("Не указано наименование продукта");
-        } else {
-            this.productName = productName;
         }
+        this.productName = productName;
+        this.id = UUID.randomUUID();
+
 
     }
 
@@ -43,7 +44,6 @@ public abstract class Product implements Searchable {
     }
 
     public UUID getId() {
-        id = UUID.randomUUID();
         return id;
     }
 
