@@ -1,5 +1,6 @@
 package org.skypro.skyshop.service;
 
+import org.skypro.skyshop.model.error.NoSuchProductException;
 import org.skypro.skyshop.model.product.Product;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +20,12 @@ public class BasketService {
 
     public void addProductByIdToBasket(UUID id) {
 
-
         if (!storageService.getSearchable().stream().anyMatch(product -> product.getId().equals(id))) {
-            throw new IllegalArgumentException("id Не найден");
+            throw new NoSuchProductException();
         }
         int newCount = basket.getOrDefault(id, 0) + 1;
         basket.put(id, newCount);
     }
-
 
     public Map<UUID, UserBasket> getUserBasket() {
         Map<UUID, UserBasket> result = new HashMap<>();
