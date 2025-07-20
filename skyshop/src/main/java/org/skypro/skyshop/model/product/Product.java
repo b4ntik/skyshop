@@ -17,10 +17,9 @@ public abstract class Product implements Searchable {
         this.productName = productName;
         this.id = UUID.randomUUID();
 
-
     }
 
-    public Product(String s, double v, UUID uuid) {
+    public Product(String s, int v, UUID uuid) {
     }
 
     public boolean isSpecial() {
@@ -28,6 +27,8 @@ public abstract class Product implements Searchable {
     }
 
     public abstract int getProductPrice();
+
+    //public void setProductPrice(UUID id, int i) {};
 
     public String getProductName() {
         return productName;

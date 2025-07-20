@@ -39,4 +39,14 @@ public class FixPriceProduct extends Product {
         return false;
     }
 
+    @Override
+    public void setId(UUID existingProductId) {
+
+    }
+
+    @Override
+    public void setTitle(String testProduct) {
+
+    }
+
 }

@@ -68,6 +68,16 @@ public class Article implements Searchable {
         return articleTitle.equals(that.articleTitle);
     }
 
+    @Override
+    public void setId(UUID existingProductId) {
+
+    }
+
+    @Override
+    public void setTitle(String testProduct) {
+
+    }
+
     //переопределение hashCode для статей
     @Override
     public int hashCode() {

@@ -25,4 +25,8 @@ public interface Searchable {
 
  //переопределение equals для статей
  boolean equals(Article article);
+
+ void setId(UUID existingProductId);
+
+ void setTitle(String testProduct);
 }
