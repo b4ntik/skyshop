@@ -1,11 +1,10 @@
-package org.skypro.skyshop;
+package org.skypro.skyshop.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.skypro.skyshop.model.search.SearchResult;
 import org.skypro.skyshop.model.search.Searchable;
-import org.skypro.skyshop.service.SearchService;
-import org.skypro.skyshop.service.StorageService;
+
 import java.util.List;
 import java.util.Set;
 
