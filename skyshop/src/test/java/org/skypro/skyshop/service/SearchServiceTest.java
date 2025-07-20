@@ -52,7 +52,7 @@ public class SearchServiceTest {
         assertEquals(1, results.size());
         assertEquals("Apple iPhone", results.get(0).getName());
     }
-    //тест для поиска несовпадающих регистров
+    //тест регистронезависимости
     @Test
     void search_caseInsensitiveSearch() {
         Searchable item = mock(Searchable.class);
