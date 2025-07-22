@@ -3,6 +3,7 @@ package org.skypro.skyshop.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.skypro.skyshop.model.article.Article;
+import org.skypro.skyshop.model.error.NoSuchProductException;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.search.Searchable;
 
@@ -55,21 +56,17 @@ public class StorageServiceTest {
         Product anyProduct = storageService.getProductMap().iterator().next();
         UUID id = anyProduct.getId();
 
-        Optional<Product> found = storageService.getProductById(id);
+        Product found = storageService.getProductById(id);
 
-        assertThat(found)
-                .isPresent()
-                .contains(anyProduct);
+        assertThat(found).isEqualTo(anyProduct);
     }
-    //попытаться получить продукты по несуществующему Айди - должен вернуть пустой список
+    //попытаться получить продукты по несуществующему Айди - должен выдать исключение
     @Test
     void getProductById_nonExistingId_shouldReturnEmpty() {
         UUID fakeId = UUID.randomUUID();
+        assertThatThrownBy(() -> storageService.getProductById(fakeId))
+                .isExactlyInstanceOf(NoSuchProductException.class);
 
-        Optional<Product> found = storageService.getProductById(fakeId);
-
-        assertThat(found)
-                .isEmpty();
     }
 
 }

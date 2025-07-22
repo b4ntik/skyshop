@@ -1,10 +1,11 @@
 package org.skypro.skyshop.service;
 
+import org.skypro.skyshop.model.product.Product;
+
 import java.util.List;
 
 public class UserBasket {
     private final List<BasketItem> items;
-    private int total = 0;
     private int count;
 
     public UserBasket(List<BasketItem> items, int count) {
@@ -21,10 +22,16 @@ public class UserBasket {
     }
 
     public int totalBasketPrice(List<BasketItem> items) {
-        total = items.stream()
-                .mapToInt(item -> item.getProduct().getProductPrice() * item.getCount())
+        return items.stream()
+                .mapToInt(item -> {
+                    Product product = item.getProduct();
+                    if (product == null) {
+                        return 0;
+                    }
+
+                    return product.getProductPrice() * item.getCount();
+                })
                 .sum();
-        return total;
     }
 
     public List<BasketItem> getBasketItem() {

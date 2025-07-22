@@ -23,8 +23,27 @@ public class BasketService {
         if (!storageService.getSearchable().stream().anyMatch(product -> product.getId().equals(id))) {
             throw new NoSuchProductException();
         }
-        int newCount = basket.getOrDefault(id, 0) + 1;
-        basket.put(id, newCount);
+        Optional<BasketItem> itemOpt = items.stream()
+                .filter(item -> item.getProduct() != null && item.getProduct().getId().equals(id))
+                .findFirst();
+
+        if (itemOpt.isPresent()) {
+            // Если есть, увеличиваем количество
+            itemOpt.get().incrementCount();
+            basket.put(id, basket.getOrDefault(id, 0) + 1);
+        } else {
+            // Если нет, добавляем новый товар
+            Product product = storageService.getProductById(id);
+            if(product == null){ throw new NoSuchProductException();}
+            BasketItem item = new BasketItem(product, 1); // предполагается, что есть конструктор
+            items.add(item);
+            basket.put(id, 1);
+        }
+        boolean exists = storageService.getSearchable().stream().anyMatch(product -> product.getId().equals(id));
+        System.out.println("Product with id " + id + " exists in searchable: " + exists);
+
+        Product product = storageService.getProductById(id);
+        System.out.println("Product fetched by id: " + product);
     }
 
     public Map<UUID, UserBasket> getUserBasket() {
