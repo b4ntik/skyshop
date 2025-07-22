@@ -38,15 +38,14 @@ public class StorageService {
         return searchable;
     }
 
-    public Optional<Product> getProductById(UUID id) {
-        try {
+    public Product getProductById(UUID id) {
+
             return getProductMap().stream()
                     .filter(product -> product.getId().equals(id))
-                    .findFirst();
-        } catch (NoSuchProductException exc) {
-            exc.printStackTrace();
-        }
-        return Optional.empty();
+                    .findFirst()
+            .orElseThrow(() -> new NoSuchProductException());
+
+
     }
 
     //метод для создания тестовых продуктов

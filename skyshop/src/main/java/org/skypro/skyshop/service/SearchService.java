@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class SearchService {
+    public class SearchService {
     private final StorageService storageService;
 
 
@@ -26,7 +26,7 @@ public class SearchService {
         Collection<Searchable> items = storageService.getSearchable();
 
         List<SearchResult> results = items.stream()
-                .filter(item -> item.getProductName().toLowerCase().trim().contains(searchString))
+                .filter(item -> item.getProductName().toLowerCase().trim().contains(lowerCaseString))
                 .map(SearchResult::new)
                 .collect(Collectors.toList());
         return results;

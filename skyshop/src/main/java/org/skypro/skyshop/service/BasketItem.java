@@ -8,7 +8,7 @@ public class BasketItem {
 
     public BasketItem(Product product, int count) {
         this.product = product;
-        this.count = 1;
+        this.count = count;
     }
 
     public Product getProduct() {
@@ -19,8 +19,6 @@ public class BasketItem {
         return count;
     }
 
-    public void incrementCount() {
-        count++;
-    }
+    public void incrementCount() { count++;}
 
 }
